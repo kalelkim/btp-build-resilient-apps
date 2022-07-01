@@ -4,7 +4,10 @@
     "scopes": [
         {
             "name": "$XSAPPNAME.BPAdmin",
-            "description": "BPAdmin"
+            "description": "BPAdmin",
+            "grant-as-authority-to-apps": [
+                "$XSSERVICENAME(em_sunrise)"
+            ]
         },
         {
             "name": "uaa.user",

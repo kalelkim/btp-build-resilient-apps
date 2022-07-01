@@ -26,6 +26,6 @@
         }
     },
     "version": "1.1.0",
-    "emname": "bpem",
-    "namespace": "tfe/bpem/em"
+    "emname": "em_sunrise",
+    "namespace": "com/sds/sunrise"
 }

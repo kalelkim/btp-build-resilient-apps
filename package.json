@@ -12,7 +12,7 @@
         "@sap-cloud-sdk/core": "^1.54.0",
         "@sap/cds": "^5.8.0",
         "@sap/cloud-sdk-vdm-business-partner-service": "^1.28.2",
-        "@sap/hana-client": "^2.11.14",
+        "@sap/hana-client": "^2.13.13",
         "@sap/xb-msg-amqp-v100": "^0.9.58",
         "@sap/xsenv": "^3.2.0",
         "@sap/xssec": "^3.2.12",
@@ -47,8 +47,6 @@
     },
     "scripts": {
         "update-dependencies": "ncu -u",
-        "test:odata_negative": "mocha tests/odata-negative.js --timeout 15000 --exit",
-        "test:odata": "mocha tests/odata.js --timeout 15000 --exit",
         "start": "npx -n=\"--inspect\" cds run"
     },
     "cds": {
@@ -60,14 +58,45 @@
         },
         "requires": {
             "db": {
-                "kind": "sql"
+                "kind": "hana"
+            },
+            "management": {
+                "credentials": {
+                    "oa2": {
+                        "clientid": "sb-default-11999e15-8990-4521-9260-6d8183693d28-clone!b142359|xbem-service-broker-!b2436",
+                        "clientsecret": "56e92fe2-c875-48aa-bcee-32c3b68d4e3f$npZrbc1dAZmGlPwLRsrLiERwRf22rW8UFOVXfkCiV04=",
+                        "tokenendpoint": "https://extend-sap-scenario-202206-b4nmh6gn.authentication.eu10.hana.ondemand.com/oauth/token",
+                        "granttype": "client_credentials"
+                    },
+                    "uri": "https://enterprise-messaging-hub-backend.cfapps.eu10.hana.ondemand.com"
+                }
             },
             "messaging": {
-                "kind": "file-based-messaging",
-                "[production]": {
-                    "kind": "enterprise-messaging-shared"
+                "kind": "enterprise-messaging-amqp",
+                "credentials": {
+                    "oa2": {
+                        "clientid": "sb-default-11999e15-8990-4521-9260-6d8183693d28-clone!b142359|xbem-service-broker-!b2436",
+                        "clientsecret": "56e92fe2-c875-48aa-bcee-32c3b68d4e3f$npZrbc1dAZmGlPwLRsrLiERwRf22rW8UFOVXfkCiV04=",
+                        "tokenendpoint": "https://extend-sap-scenario-202206-b4nmh6gn.authentication.eu10.hana.ondemand.com/oauth/token",
+                        "granttype": "client_credentials"
+                    },
+                    "protocol": [
+                        "amqp10ws"
+                    ],
+                    "broker": {
+                        "type": "sapmgw"
+                    },
+                    "uri": "wss://enterprise-messaging-messaging-gateway.cfapps.eu10.hana.ondemand.com/protocols/amqp10ws"
                 },
-                "file": "../msg-box"
+                "namespace": "com/sds/sunrise",
+                "serviceinstanceid": "11999e15-8990-4521-9260-6d8183693d28",
+                "uaa": {
+                    "clientid": "sb-default-11999e15-8990-4521-9260-6d8183693d28-clone!b142359|xbem-service-broker-!b2436",
+                    "clientsecret": "56e92fe2-c875-48aa-bcee-32c3b68d4e3f$npZrbc1dAZmGlPwLRsrLiERwRf22rW8UFOVXfkCiV04=",
+                    "url": "https://extend-sap-scenario-202206-b4nmh6gn.authentication.eu10.hana.ondemand.com",
+                    "xsappname": "default-11999e15-8990-4521-9260-6d8183693d28-clone!b142359|xbem-service-broker-!b2436",
+                    "credential-type": "binding-secret"
+                }
             },
             "[production]": {
                 "OP_API_BUSINESS_PARTNER_SRV": {
@@ -90,6 +119,20 @@
                             "path": "/sap/opu/odata/sap/API_BUSINESS_PARTNER",
                             "requestTimeout": 1000000
                         }
+                    }
+                }
+            },
+            "requires": {
+                "OP_API_BUSINESS_PARTNER_SRV": {
+                    "kind": "odata",
+                    "model": "srv/external/OP_API_BUSINESS_PARTNER_SRV",
+                    "credentials": {
+                        "destination": "BusinessPartner",
+                        "path": "/sap/opu/odata/sap/API_BUSINESS_PARTNER",
+                        "requestTimeout": 1000000
+                    },
+                    "destinationOptions": {
+                        "selectionStrategy": "alwaysSubscriber"
                     }
                 }
             }

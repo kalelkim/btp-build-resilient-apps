@@ -24,15 +24,4 @@ service AdminService {
 
 }
 
-annotate AdminService with @(requires : 'authenticated-user');
 
-annotate AdminService.Addresses with @(restrict : [{
-    grant : ['*'],
-    to    : 'BPAdmin'
-}]);
-
-
-annotate AdminService.BusinessPartnerVerification with @(restrict : [{
-    grant : ['*'],
-    to    : 'BPAdmin'
-}]);

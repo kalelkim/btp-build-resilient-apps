@@ -16,5 +16,58 @@
                 }
             }
         }
+    },
+    "xsappname": "default-11999e15-8990-4521-9260-6d8183693d28-clone!b142359|xbem-service-broker-!b2436",
+    "management": [
+        {
+            "oa2": {
+                "clientid": "sb-default-11999e15-8990-4521-9260-6d8183693d28-clone!b142359|xbem-service-broker-!b2436",
+                "clientsecret": "56e92fe2-c875-48aa-bcee-32c3b68d4e3f$npZrbc1dAZmGlPwLRsrLiERwRf22rW8UFOVXfkCiV04=",
+                "tokenendpoint": "https://extend-sap-scenario-202206-b4nmh6gn.authentication.eu10.hana.ondemand.com/oauth/token",
+                "granttype": "client_credentials"
+            },
+            "uri": "https://enterprise-messaging-hub-backend.cfapps.eu10.hana.ondemand.com"
+        }
+    ],
+    "messaging": [
+        {
+            "oa2": {
+                "clientid": "sb-default-11999e15-8990-4521-9260-6d8183693d28-clone!b142359|xbem-service-broker-!b2436",
+                "clientsecret": "56e92fe2-c875-48aa-bcee-32c3b68d4e3f$npZrbc1dAZmGlPwLRsrLiERwRf22rW8UFOVXfkCiV04=",
+                "tokenendpoint": "https://extend-sap-scenario-202206-b4nmh6gn.authentication.eu10.hana.ondemand.com/oauth/token",
+                "granttype": "client_credentials"
+            },
+            "protocol": [
+                "amqp10ws"
+            ],
+            "broker": {
+                "type": "sapmgw"
+            },
+            "uri": "wss://enterprise-messaging-messaging-gateway.cfapps.eu10.hana.ondemand.com/protocols/amqp10ws"
+        },
+        {
+            "oa2": {
+                "clientid": "sb-default-11999e15-8990-4521-9260-6d8183693d28-clone!b142359|xbem-service-broker-!b2436",
+                "clientsecret": "56e92fe2-c875-48aa-bcee-32c3b68d4e3f$npZrbc1dAZmGlPwLRsrLiERwRf22rW8UFOVXfkCiV04=",
+                "tokenendpoint": "https://extend-sap-scenario-202206-b4nmh6gn.authentication.eu10.hana.ondemand.com/oauth/token",
+                "granttype": "client_credentials"
+            },
+            "protocol": [
+                "httprest"
+            ],
+            "broker": {
+                "type": "saprestmgw"
+            },
+            "uri": "https://enterprise-messaging-pubsub.cfapps.eu10.hana.ondemand.com"
+        }
+    ],
+    "namespace": "com/sds/sunrise",
+    "serviceinstanceid": "11999e15-8990-4521-9260-6d8183693d28",
+    "uaa": {
+        "clientid": "sb-default-11999e15-8990-4521-9260-6d8183693d28-clone!b142359|xbem-service-broker-!b2436",
+        "clientsecret": "56e92fe2-c875-48aa-bcee-32c3b68d4e3f$npZrbc1dAZmGlPwLRsrLiERwRf22rW8UFOVXfkCiV04=",
+        "url": "https://extend-sap-scenario-202206-b4nmh6gn.authentication.eu10.hana.ondemand.com",
+        "xsappname": "default-11999e15-8990-4521-9260-6d8183693d28-clone!b142359|xbem-service-broker-!b2436",
+        "credential-type": "binding-secret"
     }
 }

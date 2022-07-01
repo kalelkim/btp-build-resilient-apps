@@ -9,8 +9,8 @@ module.exports = cds.service.impl(async function () {
     this.on('READ', BusinessPartners, async (req) => {
         try {
             const bupaSrv = await cds.connect.to('OP_API_BUSINESS_PARTNER_SRV');
-            //let entity = 'A_BusinessPartner';
-            //let columnsToSelect = ["BusinessPartner", "FirstName", "LastName"];
+            let entity = 'A_BusinessPartner';
+            let columnsToSelect = ["BusinessPartner", "FirstName", "LastName"];
 
             return await bupaSrv.tx(req).run(req.query)
 

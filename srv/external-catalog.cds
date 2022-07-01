@@ -10,7 +10,7 @@ service S4Service {
         Deletable  : false
     }
 
-    @cds.persistence.skip
+    
     entity BusinessPartners         as
         select from externalBuPa.A_BusinessPartner {
             key BusinessPartner          as businessPartnerId,
@@ -19,20 +19,20 @@ service S4Service {
                 LastName                 as businessPartnerLastName
         };
 
-    @cds.persistence.skip
+    
     entity BusinessPartnerAddresses as projection on externalBuPa.A_BusinessPartnerAddress {
         key BusinessPartner as businessPartnerId, AddressID as addressId, Country as country, CityName as cityName, StreetName as streetName, PostalCode as postalCode, HouseNumber as houseNumber
     };
 }
 
 extend service externalBuPa with {
-    @topic : 'tfe/bpem/em/ce/sap/s4/beh/businesspartner/v1/BusinessPartner/Created/v1'
+    @topic : 'com/sds/sunrise/sap/s4/beh/businesspartner/v1/BusinessPartner/Created/v1'
     event BusinessPartnerCreated {
         ID              : UUID;
         BUSINESSPARTNER : String;
     }
 
-    @topic : 'tfe/bpem/em/ce/sap/s4/beh/businesspartner/v1/BusinessPartner/Changed/v1'
+    @topic : 'com/sds/sunrise/sap/s4/beh/businesspartner/v1/BusinessPartner/Changed/v1'
     event BusinessPartnerChanged {
         ID              : UUID;
         BUSINESSPARTNER : String;
